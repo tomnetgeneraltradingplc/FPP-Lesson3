@@ -1,11 +1,11 @@
 package lesson3.problem1;
 
 public class Customer {
-	String firstName; 
-	String lastName;
-	String socSecurityNum;
-	Address billingAddress;
-	Address shippingAddress;
+	private String firstName; 
+	private String lastName;
+	private String socSecurityNum;
+	private Address billingAddress;
+	private Address shippingAddress;
 	public Customer(String firstName, String lastName, String socSecurityNum) {
 		
 		this.firstName = firstName;

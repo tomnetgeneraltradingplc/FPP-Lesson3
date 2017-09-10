@@ -1,10 +1,10 @@
 package lesson3.problem1;
 
 public class Address {
-	 String street; 
-	 String city; 
-	 String state; 
-	 String zip;
+	 private String street; 
+	 private String city; 
+	 private String state; 
+	 private String zip;
 	public Address(String street, String city, String state, String zip) {
 		
 		this.street = street;
