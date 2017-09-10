@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class HeartRates {
-String firstName;
-String lastName ;
-LocalDate dateOfBirth;
+	private String firstName;
+	private String lastName ;
+	private LocalDate dateOfBirth;
 int RHR=70;
 float LB= 0.5f;
 float UB= 0.85f;
@@ -34,54 +34,38 @@ public LocalDate getDateOfBirth() {
 public void setDateOfBirth(LocalDate dateOfBirth) {
 	this.dateOfBirth = dateOfBirth;
 }
-public int calculateAge(LocalDate dateOfBirth) {
-    
-	 LocalDate today = LocalDate.now();
-	 Period age=Period.between(dateOfBirth, today);
-	        
-	return age.getYears();
-	    
+
+	public int calculateAge() {
+		LocalDate today = LocalDate.now();
+		return Period.between(this.dateOfBirth, today).getYears();
 	}
-public int MHR(){
-	   int age = calculateAge(dateOfBirth);
-	   int maximumHeartRate=220-age;
-	   return maximumHeartRate;
-	   
-}
 
-public int AHR(){
-    
-	   int Average=MHR()-RHR;
-	   return Average;
-	   
-}
-//public double LBTHR(){
-//    
-//	double Lower=(AHR()*LB)+RHR;
-//	   return Lower;
-//	   
-//}
-//public double UTHR(){
-//    
-//	double Upper=(AHR()*UB)+RHR;
-//	   return Upper;   
-//}
-public String TargetHeartRateRange(){
-	int Lower=(int) ((AHR()*LB)+RHR);
-	int Upper=(int) ((AHR()*UB)+RHR);
+	public int getMaximumHeartRate() {
+		return 220 - this.calculateAge();
+	}
 
-return Lower + " - " + Upper + "%";
+	
 
-}
+public String getTargetHeartRateRange(){
 
-@Override
-public String toString() {
-	return "HeartRates [firstName=" + firstName + 
-			", lastName=" + lastName + 
-			", dateOfBirth=" + dateOfBirth + 
-			", Person age=" + calculateAge(dateOfBirth) + 
-			", MHR=" +   MHR()+
-			", Target-Heart-Rate=" +   TargetHeartRateRange()+
-			"]";
-}
+	int RHR = 70;
+	double AHR = this.getMaximumHeartRate() - RHR;
+	double LB = 0.5;
+	double UB = 0.85;
+	double LBTHR = (AHR*LB) + RHR;
+	double UBTHR = (AHR*UB) + RHR;
+	String result = "The Result of Target Heart Rate Range is between " + LBTHR + " and " + UBTHR;
+	return result;
+	}
+	@Override
+	public String toString() {
+	return "[firstName=" + firstName +
+	", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth +
+	",age = " + this.calculateAge()+
+	",MHR = " + this.getMaximumHeartRate()+
+	",THR = " + this.getTargetHeartRateRange()+
+	"]";
+	}
+
+
 }
